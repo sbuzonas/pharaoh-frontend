@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <base href="/">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Pharaoh Package Repository</title>
+
+    <!-- Boostrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- build:vendor -->
+    <script src="js/dist/systemjs/dist/system.js"></script>
+    <script src="js/system.config.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:bootstrap -->
+    <script>
+      (function (global) {
+        var loader = System.import('vendor');
+        loader.then(function () {
+          System.import('bootstrap').catch(function(err) { console.error(err); });
+        });
+
+        global.applicationBootstrap = loader;
+      })(this);
+    </script>
+    <!-- endbuild -->
+
+  </head>
+  <body>
+    <pharaoh-app></pharaoh-app>
+
+    <!-- Loading splash page -->
+    <div id="loading-screen-container">
+      <!-- Remove loading screen -->
+      <script>
+        (function (global) {
+          window.applicationBootstrap.then(function () {
+            var loadingScreenContainer = document.getElementById('loading-screen-container');
+
+            loadingScreenContainer.className = "bootstrapped";
+
+            setTimeout(function() {
+              loadingScreenContainer
+                .parentNode
+                  .removeChild(loadingScreenContainer);
+            });
+          });
+        })(this);
+      </script>
+
+      <!-- Loading screen styles -->
+      <style type="text/css">
+        #loading-screen-container {
+          background-color: #333;
+          color: #fff;
+          display: block;
+          height: 100%;
+          min-height: 100%;
+          position: absolute;
+          text-align: center;
+          text-shadow: 0 .05rem .1rem rgba(0,0,0,.5);
+          width: 100%;
+          -webkit-transition: all linear 300ms;
+                  transition: all linear 300ms;
+          z-index: 999999;
+        }
+
+        #loading-screen-container.bootstrapped {
+          opacity: 0.0;
+        }
+
+        #loading-screen-container .inner-content {
+          display: table;
+          width: 100%;
+          height: 100%; /* For at least Firefox */
+          min-height: 100%;
+          -webkit-box-shadow: inset 0 0 5rem rgba(0,0,0,.5);
+                  box-shadow: inset 0 0 5rem rgba(0,0,0,.5);
+        }
+
+        #loading-screen {
+          margin-right: auto;
+          margin-left: auto;
+
+          display: table-cell;
+          vertical-align: middle;
+        }
+
+        #loading-screen .loading-message {
+          padding: 0 1.5rem;
+        }
+      </style>
+
+      <div class="inner-content">
+        <div id="loading-screen">
+          <h1 class="loading-message">Pharaoh loading...</h1>
+        </div>
+      </div>
+
+    </div>
+    <!-- End loading splash page -->
+  </body>
+</html>

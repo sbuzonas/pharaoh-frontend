@@ -1,0 +1,16 @@
+{
+    "port": 3000,
+    "open": false,
+    "files": ["./node_modules/**/*.*", "./public/**/*.{html,css,js}"],
+    "server": {
+        "baseDir": "public",
+        "routes": {
+            "/js/dist": "node_modules"
+        }
+    },
+    "host": "pharaoh.fgcloud.local",
+    "socket": {
+        "domain": "pharaoh.fgcloud.local"
+    },
+    "logLevel": "debug"
+}
