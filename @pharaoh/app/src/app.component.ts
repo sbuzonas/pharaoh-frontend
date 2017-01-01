@@ -1,18 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Title }     from '@angular/platform-browser';
 
 @Component({
-//  moduleId: module.id.replace('/js/', '/ts/'),
+//  moduleId: module.id.replace('/js/', '/templates/'),
   selector: 'pharaoh-app',
   styleUrls: [],
-  template: `<h1>Hello {{name}}</h1>`,
+  template: `
+    <h1>{{title}}</h1>
+    <a routerLink="/dashboard">Dashboard</a>
+    <a routerLink="/packages">Packages</a>
+    <router-outlet></router-outlet>
+  `,
 //  templateUrl: 'app.component.html',
 })
 export class AppComponent {
-  public constructor(private titleService: Title) { }
+  title = 'Pharaoh Package Browser';
 
-  public setTitle(newTitle: string) {
+  constructor(private titleService: Title) { }
+
+  setTitle(newTitle: string) {
     this.titleService.setTitle(newTitle);
   }
-  title = 'Pharaoh Package Browser';
+
 }

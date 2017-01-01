@@ -1,19 +1,41 @@
 import { NgModule }             from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
+import { RouterModule }         from '@angular/router';
 
 import { AppComponent } from './app.component';
-
-//import { PageHeaderComponent } from './page
+import { DashboardComponent } from './dashboard.component';
+import { ComposerPackageComponent } from './composer-package.component';
+import { ComposerPackageService } from './composer-package.service';
+import { PackageDetailComponent } from './package-detail.component';
 
 @NgModule({
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot([
+      {
+        path: '',
+        redirectTo: '/dashboard',
+        pathMatch: 'full'
+      },
+      {
+        path: 'dashboard',
+        component: DashboardComponent
+      },
+      {
+        path: 'packages',
+        component: ComposerPackageComponent
+      }
+    ])
   ],
   declarations: [
-    AppComponent
+    AppComponent,
+    DashboardComponent,
+    ComposerPackageComponent,
+    PackageDetailComponent
   ],
   providers: [
-    Title
+    Title,
+    ComposerPackageService
   ],
   bootstrap: [
     AppComponent
